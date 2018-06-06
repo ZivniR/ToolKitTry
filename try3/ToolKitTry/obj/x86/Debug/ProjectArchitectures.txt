@@ -1,0 +1,4 @@
+C:\Users\Ziv-Nir\Documents\ToolKitTry\try3\GeneratedProjects\UWP\Assembly-CSharp\Assembly-CSharp.csproj;x86
+C:\Users\Ziv-Nir\Documents\ToolKitTry\try3\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+C:\Users\Ziv-Nir\Documents\ToolKitTry\try3\GeneratedProjects\UWP\Assembly-CSharp-firstpass\Assembly-CSharp-firstpass.csproj;x86
+C:\Users\Ziv-Nir\Documents\ToolKitTry\try3\ToolKitTry\ToolKitTry.csproj;x86

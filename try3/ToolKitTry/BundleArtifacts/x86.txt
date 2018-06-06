@@ -1,0 +1,2 @@
+MainPackage=C:\Users\Ziv-Nir\Documents\ToolKitTry\try3\ToolKitTry\bin\x86\Release\ToolKitTry_1.0.0.0_x86.appx
+SymbolPackage=C:\Users\Ziv-Nir\Documents\ToolKitTry\try3\ToolKitTry\AppPackages\ToolKitTry_1.0.0.0_Test\ToolKitTry_1.0.0.0_x86.appxsym
