@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* handle the soldier position*/
+
 public class positioner : MonoBehaviour {
 
     public Text Mover;

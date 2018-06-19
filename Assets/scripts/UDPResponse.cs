@@ -123,7 +123,7 @@ public class UDPResponse : MonoBehaviour {
     }
 #endif    
     public void ResponseToUDPPacket(string incomingIP, string incomingPort, byte[] data)
-    {
+    {//handle the udp packge
 
         if (tm != null)
             tm.text = System.Text.Encoding.UTF8.GetString(data);
@@ -213,10 +213,9 @@ public class UDPResponse : MonoBehaviour {
                     try
                     {
                         string str = some.Substring(9);
-                        queue.Enqueue(str);
-                        str = queue.Dequeue();
                         Debug.Log(str);
-                        g1 = Instantiate(gt, gt.transform.position, gt.transform.localRotation) as TextMesh;
+                        hg.warninglist.Add(str);
+                        /*g1 = Instantiate(gt, gt.transform.position, gt.transform.localRotation) as TextMesh;
                         g1.transform.SetParent(gt.transform, false);
                         g1.transform.parent = gt.transform.parent;
                         g1.transform.localPosition = new Vector3(gt.transform.localPosition.x, gt.transform.localPosition.y, 0f);
@@ -234,7 +233,7 @@ public class UDPResponse : MonoBehaviour {
                             }
                         }
                         g1.text = str1;
-                        Destroy(g1, 30);
+                        Destroy(g1, 30);*/
                     }
                     catch
                     {
@@ -282,7 +281,7 @@ public class UDPResponse : MonoBehaviour {
             break; 
             }
         }        
-        comm.SendUDPMessage(incomingIP, comm.externalPort, data);
+        //comm.SendUDPMessage(incomingIP, comm.externalPort, data);
 
 #endif
     }

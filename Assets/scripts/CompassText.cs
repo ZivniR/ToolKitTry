@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* handle the compass text*/
 
 public class CompassText : MonoBehaviour {
     [SerializeField]

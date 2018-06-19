@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/* handle the target count text*/
+
 public class TargetCount : MonoBehaviour {
 
     public Text Mover;

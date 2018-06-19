@@ -14,7 +14,7 @@ ToolKitTry\MainPage.xaml: F64E1F05230EE6E5F2BFBD640023D4E0
 ToolKitTry\MainPage.xaml.cs: A497D078FEBDB339DDFD2FF278756C40
 ToolKitTry\Package.appxmanifest: 045E0EABCAB756AD553C660B14356810
 ToolKitTry\project.json: 1D02BC64BAC0D041019673A1C4C51737
-ToolKitTry\ToolKitTry.csproj: 733C864BD019ABF7744B03369AC97AAF
+ToolKitTry\ToolKitTry.csproj: modified
 ToolKitTry\ToolKitTry.csproj.user: modified
 ToolKitTry\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
 ToolKitTry\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
@@ -34,5 +34,12 @@ ToolKitTry\obj\x86\Master\MainPage.xaml: D6AC3EEE722DBCFE7AC7F616316562E3
 ToolKitTry\obj\x86\Master\ToolKitTry.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E
 ToolKitTry\obj\x86\Release\App.xaml: D8F16FD51277D0E24CF7BF4A93CC0912
 ToolKitTry\obj\x86\Release\MainPage.xaml: D6AC3EEE722DBCFE7AC7F616316562E3
+ToolKitTry\obj\x86\Release\PackageLayout\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
+ToolKitTry\obj\x86\Release\PackageLayout\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
+ToolKitTry\obj\x86\Release\PackageLayout\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
+ToolKitTry\obj\x86\Release\PackageLayout\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
+ToolKitTry\obj\x86\Release\PackageLayout\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
+ToolKitTry\obj\x86\Release\PackageLayout\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
+ToolKitTry\obj\x86\Release\PackageLayout\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
 ToolKitTry\Properties\AssemblyInfo.cs: 84565FCD7CCD392DF23A602F37332AA1
 ToolKitTry\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826

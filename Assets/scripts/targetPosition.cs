@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*handle the targets position*/
+
 public class targetPosition : MonoBehaviour {
 
     public Text Mover;

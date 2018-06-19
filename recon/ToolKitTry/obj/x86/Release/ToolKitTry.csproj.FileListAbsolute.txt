@@ -221,3 +221,4 @@ C:\Users\Ziv-Nir\Documents\ToolKitTry\recon\ToolKitTry\obj\x86\Release\qualifier
 C:\Users\Ziv-Nir\Documents\ToolKitTry\recon\ToolKitTry\obj\x86\Release\qualifiers.txt.intermediate
 C:\Users\Ziv-Nir\Documents\ToolKitTry\recon\ToolKitTry\obj\x86\Release\MultipleQualifiersPerDimensionFound.txt
 C:\Users\Ziv-Nir\Documents\ToolKitTry\recon\ToolKitTry\obj\x86\Release\ProjectArchitectures.txt
+C:\Users\Ziv-Nir\Documents\ToolKitTry\recon\ToolKitTry\bin\x86\Release\Core\ForBundle\AppxManifest.xml

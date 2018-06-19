@@ -69,7 +69,15 @@ public class HoloGrid : MonoBehaviour {
     GameObject down;
     [SerializeField]
     GameObject up;
-
+    TextMesh g2=null;
+    [SerializeField]
+    TextMesh gt;
+    public List<String> warninglist;
+    [SerializeField]
+    public Sprite flesh;
+    [SerializeField]
+    GameObject yell;
+    int ans = 0;
     // Use this for initialization
     void Start()
     {
@@ -85,10 +93,10 @@ public class HoloGrid : MonoBehaviour {
         recognizer.StartCapturingGestures();
         MinDistance = 9999;
         Camera mainCamera = Camera.main;
-        TargetList.Add(new TargetClass("1", Instantiate(go, new Vector3(1335.34f, 3423.54f, 12330.323f), Quaternion.identity)));
+        //TargetList.Add(new TargetClass("1", Instantiate(go, new Vector3(1335.34f, 3423.54f, 12330.323f), Quaternion.identity)));
     }
 
-    public void ShotLizer()
+    public void ShotLizer()// when a soldier make gesture to mark targets and ask for lizer   
     {
         string message;
         int number = (colns * myrows) / 2;
@@ -96,7 +104,7 @@ public class HoloGrid : MonoBehaviour {
         {
              message = "delete target!";
         }
-        else
+        else // send azimout and elv to maek target
         {
             message = "mark elv " + System.Math.Round(ct.bear, 2) + " azimuth "+ System.Math.Round(ct.degree, 2);
             byte[] bytes = Encoding.ASCII.GetBytes(message);
@@ -106,19 +114,28 @@ public class HoloGrid : MonoBehaviour {
         
     }
 
-    public void CheckIncomeTargets()
+    public void CheckIncomeTargets()// when Soldier get incoming target add the new target to the list 
     {
         Debug.Log("CheckIncomeTargets()");
         Quaternion playerRotation = Camera.main.transform.rotation;
         Vector3 spawnPos = new Vector3(udpr.x, udpr.y, udpr.z);
         string id = udpr.id;
-        g1 = Instantiate(go, spawnPos, playerRotation);
-        prefabList.Add(g1);
-        TargetList.Add(new TargetClass(id, g1));
+        bool exsist = false;
+        for (int i = 0; i < TargetList.Count; i++)
+        {
+            if (TargetList[i].id == id)
+                exsist = true;
+        }
+        if (exsist == false)
+        {
+            g1 = Instantiate(go, spawnPos, playerRotation);
+            prefabList.Add(g1);
+            TargetList.Add(new TargetClass(id, g1));
+        }
         incomingFlag = false;
     }
 
-    public void DeleteById()
+    public void DeleteById() // delete target after receving target id
     {
         string id = udpr.id;
         for (int i = 0; i < TargetList.Count; i++)
@@ -134,7 +151,7 @@ public class HoloGrid : MonoBehaviour {
         }
     }
 
-    public void DeleteTarget()
+    public void DeleteTarget()// delete atarget by position **not in use**
     {
         double mindist = 9999999999999999999;
         Vector3 closer = new Vector3(); 
@@ -160,16 +177,54 @@ public class HoloGrid : MonoBehaviour {
         }
 
 
-        }
+    }
 
-    public int OnAirTapped()
+    public void WriterWarning()
     {
-        
+        String str="";
+        if (warninglist.Count > 0)
+        {
+            str = warninglist[0];
+            warninglist.RemoveAt(0);
+            g2 = (TextMesh)Instantiate(gt, gt.transform.position, gt.transform.localRotation) as TextMesh;
+            g2.transform.SetParent(gt.transform, false);
+            g2.transform.parent = gt.transform.parent;
+            g2.transform.localPosition = new Vector3(gt.transform.localPosition.x, gt.transform.localPosition.y, 0f);
+            string[] parts1 = str.Split(' ');
+            string str1 = "";
+            int width = 0;
+            for (int i = 0; i < parts1.Length; i++)
+            {
+                str1 = str1 + " " + parts1[i];
+                width += parts1[i].Length + 1;
+                if (width > 15)
+                {
+                    str1 = str1 + '\n';
+                    width = 0;
+                }
+            }
+            g2.text = str1;
+            Destroy(g2, 30);
+        }
+    }
+
+    public int OnAirTapped()// after Soldier make gesture
+    {
+        yell = new GameObject();
+        yell.AddComponent<SpriteRenderer>().sprite = flesh;
+        int number1 = (colns * myrows) / 2;
+        Debug.Log(yell.GetInstanceID());
+        yell.transform.localPosition= c0[number1].transform.localPosition;
+        yell.transform.position = c0[number1].transform.position;
+        yell.transform.parent = c0[number1].transform.parent;
+        yell.transform.rotation = c0[number1].transform.rotation;
+        yell.transform.localScale = c0[number1].transform.localScale;
+        Destroy(yell, 0.5f);
         GameObject tempgo = null; 
         Debug.Log("OnAirTapped");
         flag = !flag;
         Vector3 vec3 = gm.HitPosition;
-        for (int i = 0; i < c0.Length; i++)
+        for (int i = 0; i < c0.Length; i++)// return the place in the real world where the marking was used
         {
             Vector3 temp = c0[i].transform.position;
             double dist = Vector3.Distance(vec3, temp);
@@ -185,16 +240,15 @@ public class HoloGrid : MonoBehaviour {
             {
                 MinDistance = 9999999;
                 int number = (colns * myrows) / 2;
-                if (c0[number].GetComponent<SpriteRenderer>().sprite == mysprite)
-                {
-                    //c0[i].GetComponent<SpriteRenderer>().sprite = cellsprite;
+                if (c0[number].GetComponent<SpriteRenderer>().sprite == mysprite)// check if the center square is red (target marked) or if its in origin color (target not marked)
+                {//make gesture when the center is marked and the Soldier want to delete target 
                     Vector3 closer= new Vector3();
                     double distance;
                     double mindist = 9999999;
                     TargetClass tc = new TargetClass();
                     foreach (TargetClass red in TargetList)
                     {
-                        if (red.targetobject.GetComponent<MeshRenderer>().isVisible)
+                        if (red.targetobject.GetComponent<MeshRenderer>().isVisible)// if the trarget is visible to camera 
                         {
                             distance = Vector3.Distance(red.targetobject.transform.position, c0[i].transform.position);
                             if (distance < mindist)
@@ -206,6 +260,7 @@ public class HoloGrid : MonoBehaviour {
                             }
                         }
                     }
+                    //send to Pi request to delete target
                     string message = "remove id " + tc.id;
                     byte[] bytes = Encoding.ASCII.GetBytes(message);
                     udpc.SendUDPMessage(udpc.externalIP, udpc.externalPort, bytes);
@@ -221,7 +276,7 @@ public class HoloGrid : MonoBehaviour {
                     Quaternion playerRotation = mainCamera.transform.rotation;
                     float spawnDistance;
                     result =udpr.answer;
-                    if (result != -1)
+                    if (result != -1)// if we have just lizer with out a PI **mybe will be in use in the future**
                     {
                         Debug.Log("result hg:" + result);
                         spawnDistance = result;
@@ -252,14 +307,14 @@ public class HoloGrid : MonoBehaviour {
         return -1;
     } 
 
-    private void Recognizer_TappedEvent(InteractionSourceKind source, int tapCount, Ray headRay)
+    private void Recognizer_TappedEvent(InteractionSourceKind source, int tapCount, Ray headRay)// recognize the gesture
     {
         ShotLizer();
         int index = OnAirTapped();
         //c0[index].GetComponent<SpriteRenderer>().sprite = getSprite(c0[index]);
     }
 
-    void InitCells(int rows1)
+    void InitCells(int rows1)// create the grid
     {
         Debug.Log("InitCells");
         if (rows1 < 1)
@@ -326,7 +381,7 @@ public class HoloGrid : MonoBehaviour {
     /*change from red squre to prefab list to see the if it works go should be an anchor */
     // Update is called once per frame
     void Update()
-    {
+    {         
         Camera mainCamera = Camera.main;
         int visiblecount = 0;
         Vector3 closest3;
@@ -334,7 +389,7 @@ public class HoloGrid : MonoBehaviour {
         {
             float Zaxis = TargetList[j].targetobject.transform.position.z;
             Vector3 vec3 = TargetList[j].targetobject.transform.position;
-            if (!TargetList[j].targetobject.GetComponent<MeshRenderer>().isVisible)
+            if (!TargetList[j].targetobject.GetComponent<MeshRenderer>().isVisible)//if target is not visible to the camera than put arrow in the right direction
             {
                 visiblecount++;
                 if (visiblecount == TargetList.Count)
@@ -357,7 +412,7 @@ public class HoloGrid : MonoBehaviour {
                         }
                     }
 
-                    for (int i = 0; i < c0.Length; i++)
+                    for (int i = 0; i < c0.Length; i++)//the arrow mechanism
                     {
                         if (closest3 == c0[i].transform.position)
                         {
@@ -397,7 +452,7 @@ public class HoloGrid : MonoBehaviour {
                     //continue;
                 }
             }
-            else
+            else// if there target in the camera filed of view and we are tarcking the target
             {
                 left.GetComponent<SpriteRenderer>().enabled = false;
                 right.GetComponent<SpriteRenderer>().enabled = false;
@@ -409,9 +464,6 @@ public class HoloGrid : MonoBehaviour {
                 for (int q = 0; q < c0.Length; q++)
                 {
                     Vector3 temp = c0[q].transform.position;
-                    //Vector3 vec32 = mainCamera.WorldToViewportPoint(vec3);
-                    //Vector3 temp1 = mainCamera.WorldToViewportPoint(temp);
-                    
                     double dist = Vector3.Distance(vec31,places[q]);
                     Debug.Log(dist);
                     if (dist < mindist)
@@ -453,6 +505,9 @@ public class HoloGrid : MonoBehaviour {
             DeleteTarget();
         if (incomingFlag3 == true)
             DeleteById();
+        if (warninglist.Count > 0)
+            if (g2 == null)
+                WriterWarning();
     }
 
     public Sprite getSprite(bool _flag)
@@ -480,21 +535,21 @@ public class HoloGrid : MonoBehaviour {
         return cellsprite;
     }
 
-    public void IncreaseGrid()
+    public void IncreaseGrid()//Increase the size Grid
     {
         Debug.Log("IncreaseGrid");
         myrows = myrows + 1;
         InitCells(myrows);
     }
 
-    public void ReductionGrid()
+    public void ReductionGrid()//Reduction the size of the Grid
     {
         Debug.Log("ReductionGrid");
         myrows = myrows - 1;
         InitCells(myrows);
     }
 
-    public void GridOff()
+    public void GridOff()// turn off the grid
     {
      for(int i = 0; i < c0.Length; i++)
         {
@@ -502,7 +557,7 @@ public class HoloGrid : MonoBehaviour {
         }
     }
 
-    public void GridOn()
+    public void GridOn()// turn on the grid
     {
         for (int i = 0; i < c0.Length; i++)
         {
