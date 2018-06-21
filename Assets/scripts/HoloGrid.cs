@@ -77,11 +77,12 @@ public class HoloGrid : MonoBehaviour {
     public Sprite flesh;
     [SerializeField]
     GameObject yell;
-    int ans = 0;
+    int ans;
     // Use this for initialization
     void Start()
     {
         Debug.Log("start");
+        ans = 0;
         prefabList = new List<GameObject>();
         roat = new Quaternion();
         this.transform.localScale = gridsize;

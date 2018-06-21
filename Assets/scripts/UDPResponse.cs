@@ -18,18 +18,20 @@ public class UDPResponse : MonoBehaviour {
     private bool isConnected;
     public string id;
     Queue<string> queue;
-   /* public void Start()
-    {
-        string host = "127.0.0.1";
-        string port = "12323";
-        Debug.Log("trying to connect");
-        isConnected = tcpClientHandler.Connect(host, port);
-        //tcpClientHandler.Write("Hello from hololens");
-        //string str = tcpClientHandler.Read();
-        //tm.text = str;
+    [SerializeField]
+    UDPCommunication udpc;
+    /* public void Start()
+     {
+         string host = "127.0.0.1";
+         string port = "12323";
+         Debug.Log("trying to connect");
+         isConnected = tcpClientHandler.Connect(host, port);
+         //tcpClientHandler.Write("Hello from hololens");
+         //string str = tcpClientHandler.Read();
+         //tm.text = str;
 
 
-    }*/
+     }*/
 
     public void write() { 
         some = "hello evrybody my name is ziv nir";
@@ -274,6 +276,12 @@ public class UDPResponse : MonoBehaviour {
                     }
                     break;
             }
+            case "ip":
+                {
+                    string ip = parts[2];
+                    udpc.externalIP = ip;
+                    break;
+                }
             default: 
             { 
             string message = "ERROR";
@@ -281,7 +289,7 @@ public class UDPResponse : MonoBehaviour {
             break; 
             }
         }        
-        //comm.SendUDPMessage(incomingIP, comm.externalPort, data);
+        comm.SendUDPMessage(incomingIP, comm.externalPort, data);
 
 #endif
     }

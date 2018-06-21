@@ -14,6 +14,7 @@
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Unity Subset v3.5</TargetFrameworkProfile>
     <CompilerResponseFile></CompilerResponseFile>
+    <UnityProjectGenerator>VSTU</UnityProjectGenerator>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>WSAPlayer:21</UnityBuildTarget>
     <UnityVersion>5.6.3p2</UnityVersion>
@@ -337,6 +338,7 @@
     <Compile Include="Assets\scripts\Distance.cs" />
     <Compile Include="Assets\scripts\Grid.cs" />
     <Compile Include="Assets\scripts\HoloGrid.cs" />
+    <Compile Include="Assets\scripts\IpRequest.cs" />
     <Compile Include="Assets\scripts\MoveCamera.cs" />
     <Compile Include="Assets\scripts\RedSqure.cs" />
     <Compile Include="Assets\scripts\TargetClass.cs" />
