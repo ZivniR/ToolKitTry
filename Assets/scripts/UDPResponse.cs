@@ -279,7 +279,10 @@ public class UDPResponse : MonoBehaviour {
             case "ip":
                 {
                     string ip = parts[2];
-                    udpc.externalIP = ip;
+                    udpc.externalIP = incomingIP;
+                    string message = "START";
+                    data = Encoding.ASCII.GetBytes(message);
+                    comm.SendUDPMessage(udpc.externalIP, comm.externalPort, data);
                     break;
                 }
             default: 
@@ -289,7 +292,7 @@ public class UDPResponse : MonoBehaviour {
             break; 
             }
         }        
-        comm.SendUDPMessage(incomingIP, comm.externalPort, data);
+        //comm.SendUDPMessage(incomingIP, comm.externalPort, data);
 
 #endif
     }
