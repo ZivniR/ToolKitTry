@@ -272,9 +272,9 @@ public class HoloGrid : MonoBehaviour {
                 else
                 {
 
-                    Vector3 playerPos = mainCamera.transform.position;
-                    Vector3 playerDirection = mainCamera.transform.forward;
-                    Quaternion playerRotation = mainCamera.transform.rotation;
+                    Vector3 playerPos = Camera.main.transform.position;
+                    Vector3 playerDirection = Camera.main.transform.forward;
+                    Quaternion playerRotation = Camera.main.transform.rotation;
                     float spawnDistance;
                     result =udpr.answer;
                     if (result != -1)// if we have just lizer with out a PI **mybe will be in use in the future**

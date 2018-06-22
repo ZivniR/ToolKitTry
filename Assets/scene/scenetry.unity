@@ -1580,9 +1580,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   internalPort: 12346
-  externalIP: 192.168.43.221
+  externalIP: ZivniR
   externalPort: 8081
-  sendPingAtStart: 1
+  sendPingAtStart: 0
   PingMessage: hello
   udpEvent:
     m_PersistentCalls:

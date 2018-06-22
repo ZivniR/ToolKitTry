@@ -29,6 +29,8 @@ ToolKitTry\bin\x86\Release\AppX\Assets\Square44x44Logo.targetsize-24_altform-unp
 ToolKitTry\bin\x86\Release\AppX\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
 ToolKitTry\bin\x86\Release\AppX\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
 ToolKitTry\bin\x86\Release\AppX\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
+ToolKitTry\obj\x86\Debug\App.xaml: D8F16FD51277D0E24CF7BF4A93CC0912
+ToolKitTry\obj\x86\Debug\MainPage.xaml: D6AC3EEE722DBCFE7AC7F616316562E3
 ToolKitTry\obj\x86\Master\App.xaml: D8F16FD51277D0E24CF7BF4A93CC0912
 ToolKitTry\obj\x86\Master\MainPage.xaml: D6AC3EEE722DBCFE7AC7F616316562E3
 ToolKitTry\obj\x86\Master\ToolKitTry.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E

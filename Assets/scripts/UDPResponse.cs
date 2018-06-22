@@ -135,6 +135,7 @@ public class UDPResponse : MonoBehaviour {
 
         //ECHO 
         int index = 0;
+        udpc.externalIP = incomingIP;
         UDPCommunication comm = UDPCommunication.Instance;
         some = System.Text.Encoding.UTF8.GetString(data);
         Debug.Log(some);

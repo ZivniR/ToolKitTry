@@ -53,9 +53,35 @@ public class UDPCommunication : Singleton<UDPCommunication>
     //Send an UDP-Packet
     public async void SendUDPMessage(string HostIP, string HostPort, byte[] data)
     {
-        await _SendUDPMessage(HostIP, HostPort, data);
+        try
+        {
+            await _SendUDPMessage(HostIP, HostPort, data);
+        }
+        catch(Exception e)
+        {
+            Debug.Log(e.Message);
+        }
     }
 
+        async void GetIPAdressFromHostname(string sHostname, string sPort)
+    {
+        Debug.Log(sHostname);
+        string  sRemoteHostName = "",
+                   sLocalHostName     = "";
+
+        HostName host = new HostName(sHostname);
+        var eps = await DatagramSocket.GetEndpointPairsAsync(host, sPort);
+        foreach (EndpointPair ep in eps)
+        {
+            sRemoteHostName = ep.LocalHostName.ToString();
+            Debug.Log(sRemoteHostName);
+            sLocalHostName = ep.RemoteHostName.ToString();
+            System.Diagnostics.Debug.WriteLine(sRemoteHostName + " : " + sLocalHostName);
+            Debug.Log(sRemoteHostName + " : " + sLocalHostName);
+        }
+
+        //DO THE THINGS....
+    }
 
 
     DatagramSocket socket;
@@ -71,6 +97,7 @@ public class UDPCommunication : Singleton<UDPCommunication>
 
         Debug.Log("Waiting for a connection...");
 
+        //GetIPAdressFromHostname(externalIP, externalPort);
         socket = new DatagramSocket();
         socket.MessageReceived += Socket_MessageReceived;
 
