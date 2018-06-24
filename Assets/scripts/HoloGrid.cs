@@ -78,6 +78,7 @@ public class HoloGrid : MonoBehaviour {
     [SerializeField]
     GameObject yell;
     int ans;
+    public TargetClass targetongreed;
     // Use this for initialization
     void Start()
     {
@@ -88,6 +89,7 @@ public class HoloGrid : MonoBehaviour {
         this.transform.localScale = gridsize;
         myrows = rows;
         InitCells(rows); //initial all cells
+        GridOff();
         recognizer = new GestureRecognizer();
         recognizer.SetRecognizableGestures(GestureSettings.Tap);
         recognizer.TappedEvent += Recognizer_TappedEvent;
@@ -382,13 +384,19 @@ public class HoloGrid : MonoBehaviour {
     /*change from red squre to prefab list to see the if it works go should be an anchor */
     // Update is called once per frame
     void Update()
-    {         
+    {
+        if(udpr.startGrid==true)
+        {
+            GridOn();
+            udpr.startGrid = false;
+        }
         Camera mainCamera = Camera.main;
         int visiblecount = 0;
         Vector3 closest3;
         for (int j = 0; j < TargetList.Count; j++)
         {
             float Zaxis = TargetList[j].targetobject.transform.position.z;
+            targetongreed = TargetList[j];
             Vector3 vec3 = TargetList[j].targetobject.transform.position;
             if (!TargetList[j].targetobject.GetComponent<MeshRenderer>().isVisible)//if target is not visible to the camera than put arrow in the right direction
             {
@@ -565,5 +573,14 @@ public class HoloGrid : MonoBehaviour {
             c0[i].GetComponent<SpriteRenderer>().enabled = true;
             c0[i].GetComponent<SpriteRenderer>().sprite = cellsprite;
         }
+    }
+
+    public void Remove()
+    {
+        for (int i = 0; i < TargetList.Count; i++)
+        {
+            Destroy(TargetList[i].targetobject);
+        }
+        TargetList.Clear();
     }
 }

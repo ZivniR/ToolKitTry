@@ -20,18 +20,9 @@ public class UDPResponse : MonoBehaviour {
     Queue<string> queue;
     [SerializeField]
     UDPCommunication udpc;
-    /* public void Start()
-     {
-         string host = "127.0.0.1";
-         string port = "12323";
-         Debug.Log("trying to connect");
-         isConnected = tcpClientHandler.Connect(host, port);
-         //tcpClientHandler.Write("Hello from hololens");
-         //string str = tcpClientHandler.Read();
-         //tm.text = str;
+    public bool startGrid=false;
+    int counter = 0;
 
-
-     }*/
 
     public void write() { 
         some = "hello evrybody my name is ziv nir";
@@ -121,21 +112,28 @@ public class UDPResponse : MonoBehaviour {
             Destroy(g1, 30);
 
         }
-        tm.text = some;
+        //tm.text = some;
     }
 #endif    
     public void ResponseToUDPPacket(string incomingIP, string incomingPort, byte[] data)
     {//handle the udp packge
 
         if (tm != null)
-            tm.text = System.Text.Encoding.UTF8.GetString(data);
+            //tm.text = System.Text.Encoding.UTF8.GetString(data);
         Debug.Log("responsetoudp");
 
 #if !UNITY_EDITOR
 
         //ECHO 
         int index = 0;
-        udpc.externalIP = incomingIP;
+        if(counter==0)
+        {    
+            startGrid=true;
+            udpc.externalIP = incomingIP;
+            counter++;
+            tm.text = "connect to IP: " + udpc.externalIP;
+            tm.GetComponent<MeshRenderer>().enabled = false;
+        }
         UDPCommunication comm = UDPCommunication.Instance;
         some = System.Text.Encoding.UTF8.GetString(data);
         Debug.Log(some);
@@ -284,6 +282,15 @@ public class UDPResponse : MonoBehaviour {
                     string message = "START";
                     data = Encoding.ASCII.GetBytes(message);
                     comm.SendUDPMessage(udpc.externalIP, comm.externalPort, data);
+                    break;
+                }
+            case "disconnect":
+                {
+                    hg.Remove();
+                    counter = 0;
+                    tm.GetComponent<MeshRenderer>().enabled = true;
+                    hg.GridOff();
+                    tm.text = "Waitng for a connction...";
                     break;
                 }
             default: 
