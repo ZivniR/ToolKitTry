@@ -290,7 +290,7 @@ public class UDPResponse : MonoBehaviour {
                     counter = 0;
                     tm.GetComponent<MeshRenderer>().enabled = true;
                     hg.GridOff();
-                    tm.text = "Waitng for a connction...";
+                    tm.text = "Waitng for a connection...";
                     break;
                 }
             default: 

@@ -78,7 +78,7 @@ public class HoloGrid : MonoBehaviour {
     [SerializeField]
     GameObject yell;
     int ans;
-    public TargetClass targetongreed;
+    public Vector3 targetongreed;
     // Use this for initialization
     void Start()
     {
@@ -96,7 +96,7 @@ public class HoloGrid : MonoBehaviour {
         recognizer.StartCapturingGestures();
         MinDistance = 9999;
         Camera mainCamera = Camera.main;
-        //TargetList.Add(new TargetClass("1", Instantiate(go, new Vector3(1335.34f, 3423.54f, 12330.323f), Quaternion.identity)));
+        TargetList.Add(new TargetClass("1", Instantiate(go, new Vector3(1335.34f, 3423.54f, 12330.323f), Quaternion.identity)));
     }
 
     public void ShotLizer()// when a soldier make gesture to mark targets and ask for lizer   
@@ -222,7 +222,7 @@ public class HoloGrid : MonoBehaviour {
         yell.transform.parent = c0[number1].transform.parent;
         yell.transform.rotation = c0[number1].transform.rotation;
         yell.transform.localScale = c0[number1].transform.localScale;
-        Destroy(yell, 0.5f);
+        Destroy(yell, 1);
         GameObject tempgo = null; 
         Debug.Log("OnAirTapped");
         flag = !flag;
@@ -396,7 +396,6 @@ public class HoloGrid : MonoBehaviour {
         for (int j = 0; j < TargetList.Count; j++)
         {
             float Zaxis = TargetList[j].targetobject.transform.position.z;
-            targetongreed = TargetList[j];
             Vector3 vec3 = TargetList[j].targetobject.transform.position;
             if (!TargetList[j].targetobject.GetComponent<MeshRenderer>().isVisible)//if target is not visible to the camera than put arrow in the right direction
             {
@@ -467,6 +466,7 @@ public class HoloGrid : MonoBehaviour {
                 right.GetComponent<SpriteRenderer>().enabled = false;
                 up.GetComponent<SpriteRenderer>().enabled = false;
                 down.GetComponent<SpriteRenderer>().enabled = false;
+                targetongreed = TargetList[j].targetobject.transform.position;
                 double mindist = 9999999999999999999;
                 closest = new Vector3();
                 Vector2 vec31 = mainCamera.WorldToScreenPoint(vec3);

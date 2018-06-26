@@ -141,7 +141,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -207, y: -173}
+  m_AnchoredPosition: {x: -207, y: -165}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &19803133
@@ -222,7 +222,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40634021}
-  m_Text: Waitng for a connction...
+  m_Text: Waitng for a connection...
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -1004,6 +1004,7 @@ GameObject:
   - component: {fileID: 648561605}
   - component: {fileID: 648561604}
   - component: {fileID: 648561603}
+  - component: {fileID: 648561606}
   m_Layer: 5
   m_Name: Distance
   m_TagString: Untagged
@@ -1026,7 +1027,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 242, y: -173}
+  m_AnchoredPosition: {x: 242, y: -165}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &648561603
@@ -1079,6 +1080,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 648561601}
+--- !u!114 &648561606
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 648561601}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 479bf3bf29db31e4ebd12969ca805a83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mover: {fileID: 1847229318}
+  hg: {fileID: 111481975}
+  Distance: {fileID: 648561604}
+  index: 0
+  nextActionTime: 0
+  period: 60
 --- !u!1 &726435504
 GameObject:
   m_ObjectHideFlags: 0
@@ -1597,7 +1615,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   internalPort: 12346
-  externalIP: ZivniR
+  externalIP: 192.168.43.223
   externalPort: 8081
   sendPingAtStart: 0
   PingMessage: hello
