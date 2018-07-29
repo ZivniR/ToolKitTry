@@ -24,96 +24,9 @@ public class UDPResponse : MonoBehaviour {
     int counter = 0;
 
 
-    public void write() { 
-        some = "hello evrybody my name is ziv nir";
-        string str = some;
-        Debug.Log(str);
-        g1 = Instantiate(gt, gt.transform.localPosition, gt.transform.localRotation) as TextMesh;
-        g1.transform.SetParent(gt.transform, false);
-        g1.transform.parent = gt.transform.parent;
-        g1.transform.localPosition = new Vector3(gt.transform.localPosition.x, gt.transform.localPosition.y, 0f);
-        string[] parts1 = str.Split(' ');
-        string str1 = "";
-        int width = 0;
-        for (int i = 0; i < parts1.Length; i++)
-        {
-            str1 = str1 + " " + parts1[i];
-            width += parts1[i].Length + 1;
-            if (width > 15)
-            {
-                str1 = str1 + '\n';
-                width = 0;
-            }
-        }
-        g1.text = str1;
 
-    }
 #if UNITY_EDITOR  
-    void Update()
-    {
-        
-        string some = "shut up";
-        //some = conn.tcpClientHandler.Read();
-        //conn.tcpClientHandler.Write("welcome back");
-        switch (some)
-        {
-            case "gfg": { break; }
-            default: { break; }
-                
-        }
-        int index = 0;
-        char[] delimiterChars = { ' ', ',', '.', ':', '\t', '(', ')' };
-        string[] parts = some.Split(delimiterChars);//distance: 3
-        foreach (string str1 in parts)
-        {
-            //Debug.Log("parts["+index+"]:" + str1);
-            index++;
-        }
-        if(parts[0] == "target")
-        {
-            try
-            {
-                x = float.Parse(parts[3]);
-                y = float.Parse(parts[5]);
-                z = float.Parse(parts[7]);
-                hg.incomingFlag = true;
-            }
-            catch
-            {
 
-            }
-            finally
-            {
-
-            }
-        }        
-        else if (parts[0] == "warning")
-        {
-            string str = some.Substring(9);
-            Debug.Log(str);
-            g1 = Instantiate(gt, gt.transform.position, gt.transform.localRotation) as TextMesh;
-            g1.transform.SetParent(gt.transform, false);
-            g1.transform.parent = gt.transform.parent;
-            g1.transform.localPosition = new Vector3(gt.transform.localPosition.x, gt.transform.localPosition.y, 0f);
-            string[] parts1 = str.Split(' ');
-            string str1 = "";
-            int width = 0;
-            for (int i = 0; i < parts1.Length; i++)
-            {
-                str1 = str1 + " " + parts1[i];
-                width += parts1[i].Length + 1;
-                if (width > 15)
-                {
-                    str1 = str1 + '\n';
-                    width = 0;
-                }
-            }
-            g1.text = str1;
-            Destroy(g1, 30);
-
-        }
-        //tm.text = some;
-    }
 #endif    
     public void ResponseToUDPPacket(string incomingIP, string incomingPort, byte[] data)
     {//handle the udp packge

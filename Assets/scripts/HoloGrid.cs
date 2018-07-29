@@ -96,7 +96,7 @@ public class HoloGrid : MonoBehaviour {
         recognizer.StartCapturingGestures();
         MinDistance = 9999;
         Camera mainCamera = Camera.main;
-        TargetList.Add(new TargetClass("1", Instantiate(go, new Vector3(1335.34f, 3423.54f, 12330.323f), Quaternion.identity)));
+        //TargetList.Add(new TargetClass("1", Instantiate(go, new Vector3(1335.34f, 3423.54f, 12330.323f), Quaternion.identity)));
     }
 
     public void ShotLizer()// when a soldier make gesture to mark targets and ask for lizer   

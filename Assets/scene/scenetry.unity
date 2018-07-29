@@ -222,7 +222,7 @@ TextMesh:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40634021}
-  m_Text: Waitng for a connection...
+  m_Text: Waiting for a connection...
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -431,7 +431,7 @@ MonoBehaviour:
   warninglist: []
   flesh: {fileID: 21300000, guid: 4ca3e29ef93d26143986564135f21be8, type: 3}
   yell: {fileID: 0}
-  targetongreed: {fileID: 0}
+  targetongreed: {x: 0, y: 0, z: 0}
 --- !u!114 &111481976
 MonoBehaviour:
   m_ObjectHideFlags: 0
